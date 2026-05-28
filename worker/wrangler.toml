@@ -12,7 +12,7 @@ PUBLIC_BASE_URL = "https://comments.nodeaitry.com"
 ALLOWED_ORIGINS = "https://nodeaitry.com,http://127.0.0.1:1313,http://localhost:1313"
 AUTO_APPROVE = "false"
 ADMIN_NAME = "nodeaitry"
-ADMIN_EMAILS = ""
+ADMIN_EMAILS = "muziwen.logo@gmail.com"
 
 [[d1_databases]]
 binding = "DB"
