@@ -1,0 +1,13 @@
+[
+  {
+    "AllowedOrigins": [
+      "https://nodeaitry.com",
+      "http://127.0.0.1:1313",
+      "http://localhost:1313"
+    ],
+    "AllowedMethods": ["GET", "HEAD"],
+    "AllowedHeaders": ["*"],
+    "ExposeHeaders": ["ETag"],
+    "MaxAgeSeconds": 3600
+  }
+]

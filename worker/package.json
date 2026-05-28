@@ -1,0 +1,14 @@
+{
+  "name": "nodeaitry-comments",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:migrate:local": "wrangler d1 execute nodeaitry-comments --local --file schema/schema.sql",
+    "db:migrate:remote": "wrangler d1 execute nodeaitry-comments --remote --file schema/schema.sql"
+  },
+  "devDependencies": {
+    "wrangler": "^4.18.0"
+  }
+}

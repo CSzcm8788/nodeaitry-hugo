@@ -1,0 +1,121 @@
+baseURL: "https://nodeaitry.com/"
+title: nodeaitry.com
+copyright: "© nodeaitry.com"
+theme: [hugo-PaperMod]
+
+enableInlineShortcodes: true
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+enableEmoji: true
+pygmentsUseClasses: true
+mainsections: ["posts"]
+
+minify:
+  disableXML: true
+  minifyOutput: true
+
+pagination:
+  disableAliases: false
+  pagerSize: 10
+
+defaultContentLanguage: zh
+defaultContentLanguageInSubdir: false
+languages:
+  zh:
+    label: "简体中文"
+    locale: "zh-CN"
+    weight: 1
+    taxonomies:
+      category: categories
+      tag: tags
+      series: series
+    menu:
+      main:
+        - name: 关于
+          url: about/
+          weight: 1
+        - name: 归档
+          url: archives/
+          weight: 2
+        - name: 搜索
+          url: search/
+          weight: 3
+        - name: 标签
+          url: tags/
+          weight: 4
+
+outputFormats:
+  llms:
+    mediaType: "text/plain"
+    baseName: "llms"
+    isPlainText: true
+    notAlternative: true
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+    - llms
+
+params:
+  env: production
+  description: "nodeaitry.com"
+  author: nodeaitry
+
+  defaultTheme: auto
+  ShowShareButtons: true
+  ShowReadingTime: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowRssButtonInSectionTermList: true
+  ShowAllPagesInArchive: true
+  ShowPageNums: true
+  ShowToc: true
+  comments: true
+  commentsApi: "https://comments.nodeaitry.com"
+  commentsApiLocal: "http://localhost:8787"
+  commentsPageSize: 20
+  images: ["images/papermod-cover.png"]
+
+  profileMode:
+    enabled: false
+    title: nodeaitry.com
+    imageUrl: "#"
+    imageTitle: nodeaitry.com
+    buttons:
+      - name: Archives
+        url: archives
+      - name: Tags
+        url: tags
+
+  homeInfoParams:
+    Title: "nodeaitry.com"
+    Content: |
+      记录 AI、工程实践和产品思考。
+
+      - 以简洁、快速、可读为优先。
+      - 基于 Hugo PaperMod 主题搭建。
+      - 内容围绕真实问题、可复用方法和长期沉淀。
+
+  assets:
+    disableHLJS: true
+
+  footer:
+    text: 'Powered by [Cloudflare Pages](https://pages.cloudflare.com/), [Workers](https://workers.cloudflare.com/), [D1](https://developers.cloudflare.com/d1/) & [R2](https://www.cloudflare.com/products/r2/)'
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false
+
+services:
+  instagram:
+    disableInlineCSS: true
+  x:
+    disableInlineCSS: true

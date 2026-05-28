@@ -1,0 +1,15 @@
+{
+  "name": "nodeaitry.com",
+  "private": true,
+  "scripts": {
+    "dev": "hugo server -D --bind 127.0.0.1 --port 1313 --baseURL http://127.0.0.1:1313/",
+    "build": "hugo --gc --minify",
+    "worker:dev": "npm --prefix worker run dev",
+    "worker:deploy": "npm --prefix worker run deploy",
+    "db:migrate:local": "npm --prefix worker run db:migrate:local",
+    "db:migrate:remote": "npm --prefix worker run db:migrate:remote"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
