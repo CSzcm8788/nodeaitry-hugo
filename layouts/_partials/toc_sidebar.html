@@ -1,0 +1,19 @@
+{{- $headers := findRE "<h[2-4].*?>(.|\n])+?</h[2-4]>" .Content -}}
+{{- if ge (len $headers) 1 -}}
+<aside class="toc-sidebar" aria-label="Table of Contents">
+  <nav class="toc-sidebar-nav">
+    <div class="toc-sidebar-title">Table of Contents</div>
+    <ul class="toc-sidebar-list">
+      {{- range $headers }}
+      {{- $id := index (findRE "(id=\"(.*?)\")" . 9) 0 -}}
+      {{- $cleanedID := replace (replace $id "id=\"" "") "\"" "" -}}
+      {{- $header := replaceRE "<h[2-4].*?>((.|\n])+?)</h[2-4]>" "$1" . -}}
+      {{- $level := index (findRE "[2-4]" . 1) 0 -}}
+      <li class="toc-level-{{ $level }}">
+        <a class="toc-link" href="#{{ $cleanedID }}" data-target="{{ $cleanedID }}">{{ $header | plainify | safeHTML }}</a>
+      </li>
+      {{- end }}
+    </ul>
+  </nav>
+</aside>
+{{- end }}

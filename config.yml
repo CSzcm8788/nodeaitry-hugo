@@ -90,6 +90,7 @@ params:
   ShowAllPagesInArchive: true
   ShowPageNums: true
   ShowToc: true
+  ShareButtons: ["x", "linkedin", "facebook", "whatsapp", "telegram"]
   comments: true
   commentsApi: "https://comments.nodeaitry.com"
   commentsApiLocal: "http://localhost:8787"

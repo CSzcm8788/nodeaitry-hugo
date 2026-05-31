@@ -43,7 +43,7 @@
 .ct-wrap{margin:3rem 0 0;padding-top:1.25rem;border-top:1px solid var(--border)}
 .ct-title{margin:0 0 1rem;font-size:1.35rem}
 .ct-title span{color:var(--secondary);font-size:.95rem;font-weight:500}
-.ct-form{padding:1rem;border:1px solid var(--border);border-radius:12px;background:var(--entry)}
+.ct-form{padding:1rem;border:1px solid var(--border);border-radius:8px;background:var(--entry)}
 .ct-form-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem}
 .ct-form label{display:flex;flex-direction:column;gap:.35rem;margin-bottom:.75rem;color:var(--secondary);font-size:.82rem}
 .ct-form input,.ct-form textarea{width:100%;box-sizing:border-box;border:1px solid var(--border);border-radius:8px;background:var(--theme);color:var(--primary);padding:.65rem .75rem;font:inherit}
@@ -61,9 +61,12 @@
 .ct-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;outline:1px solid var(--border)}
 .ct-meta-line{display:flex;align-items:center;flex-wrap:wrap;gap:.35rem;color:var(--secondary);font-size:.78rem}
 .ct-author{color:var(--primary);font-size:.92rem;font-weight:650}
-.ct-badge,.ct-extra-tag{display:inline-flex;align-items:center;border-radius:999px;background:var(--code-bg);color:var(--secondary);font-size:.68rem;line-height:1.25rem;padding:0 .5rem}
+.ct-badge,.ct-extra-tag{display:inline-flex;align-items:center;border-radius:999px;background:var(--code-bg);color:var(--secondary);font-size:.68rem;line-height:1.25rem;padding:0 .55rem}
 .ct-badge-admin{background:rgba(0,111,238,.12);color:#006fee}
-.dark .ct-badge-admin{background:rgba(117,183,255,.16);color:#75b7ff}
+:root[data-theme="dark"] .ct-badge-admin{background:rgba(117,183,255,.16);color:#75b7ff}
+.ct-source-telegram{background:rgba(126,87,255,.14);color:#7c3aed}
+.ct-source-web{background:rgba(107,114,128,.14);color:var(--secondary)}
+:root[data-theme="dark"] .ct-source-telegram{background:rgba(168,139,250,.16);color:#c4b5fd}
 .ct-body{margin-left:calc(40px + .65rem)}
 .ct-content{white-space:pre-wrap;word-break:break-word;line-height:1.65;color:var(--content);font-size:.94rem}
 .ct-extra{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.45rem}
@@ -216,14 +219,18 @@
     const extras = document.createElement("div");
     extras.className = "ct-extra";
     const tags = [];
-    if (comment.source === "telegram") tags.push("Telegram");
-    if (comment.browser) tags.push(String(comment.browser));
-    if (comment.os) tags.push(String(comment.os));
-    if (comment.ipCountry) tags.push(`${flagEmoji(comment.ipCountryCode)} ${comment.ipCountry}`.trim());
-    if (comment.ipAsn) tags.push(String(comment.ipAsn));
-    tags.forEach((label) => {
+    const source = String(comment.source || "").toLowerCase();
+    if (source === "telegram") tags.push({ label: "Telegram", className: "ct-source-telegram" });
+    else if (source === "web") tags.push({ label: "Web", className: "ct-source-web" });
+    if (comment.browser) tags.push({ label: String(comment.browser) });
+    if (comment.os) tags.push({ label: String(comment.os) });
+    if (comment.ipCountry) tags.push({ label: `${flagEmoji(comment.ipCountryCode)} ${comment.ipCountry}`.trim() });
+    const asn = String(comment.ipAsn || "").trim();
+    const asOrg = String(comment.ipAsOrg || "").trim();
+    if (asn || asOrg) tags.push({ label: [asn, asOrg].filter(Boolean).join(" ") });
+    tags.forEach(({ label, className }) => {
       const tag = document.createElement("span");
-      tag.className = "ct-extra-tag";
+      tag.className = `ct-extra-tag${className ? ` ${className}` : ""}`;
       tag.textContent = label;
       extras.appendChild(tag);
     });

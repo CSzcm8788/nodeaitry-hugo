@@ -1,0 +1,37 @@
+<script>
+(() => {
+  const links = Array.from(document.querySelectorAll(".toc-sidebar .toc-link"));
+  if (!links.length || !("IntersectionObserver" in window)) return;
+
+  const headings = links
+    .map((link) => document.getElementById(link.dataset.target || ""))
+    .filter(Boolean);
+  if (!headings.length) return;
+
+  const activate = (id) => {
+    links.forEach((link) => {
+      link.classList.toggle("active", link.dataset.target === id);
+    });
+  };
+
+  const visible = new Map();
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) visible.set(entry.target.id, entry.boundingClientRect.top);
+      else visible.delete(entry.target.id);
+    });
+
+    if (visible.size) {
+      const [id] = Array.from(visible.entries()).sort((a, b) => a[1] - b[1])[0];
+      activate(id);
+      return;
+    }
+
+    const current = headings.filter((heading) => heading.getBoundingClientRect().top < 130).pop();
+    if (current) activate(current.id);
+  }, { rootMargin: "-110px 0px -65% 0px", threshold: [0, 1] });
+
+  headings.forEach((heading) => observer.observe(heading));
+  if (headings[0]) activate(headings[0].id);
+})();
+</script>

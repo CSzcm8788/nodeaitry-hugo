@@ -57,7 +57,7 @@ async function listComments(request, env, url) {
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
   const rows = await env.DB.prepare(
     `SELECT id, parent_id, root_id, depth, author_name, author_link, content, is_admin, source, avatar_url,
-            ip_country, ip_country_code, ip_asn, browser, os, created_at
+            ip_country, ip_country_code, ip_asn, ip_as_org, browser, os, created_at
        FROM comments
       WHERE page_id = ? AND status = 'approved'
       ORDER BY created_at ASC, id ASC
@@ -358,6 +358,7 @@ function publicComment(row) {
     ipCountry: row.ip_country,
     ipCountryCode: row.ip_country_code,
     ipAsn: row.ip_asn,
+    ipAsOrg: row.ip_as_org,
     browser: row.browser,
     os: row.os,
     createdAt: row.created_at
