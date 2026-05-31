@@ -39,6 +39,15 @@
         }
     }
 
+    const menuToggle = document.getElementById('menu-toggle');
+    if (menu && menuToggle) {
+        menuToggle.addEventListener('click', function () {
+            const isOpen = menu.classList.toggle('open');
+            menuToggle.classList.toggle('is-open', isOpen);
+            menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+    }
+
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener("click", function (e) {
             e.preventDefault();

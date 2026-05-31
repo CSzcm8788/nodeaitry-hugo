@@ -50,6 +50,32 @@ html[data-theme="dark"] body.list {
     font-size: 16px;
 }
 
+.menu-toggle {
+    display: none;
+    width: 32px;
+    height: 32px;
+    margin: auto var(--gap) auto 0;
+    padding: 0;
+    color: inherit;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-toggle .menu-icon-close {
+    display: none;
+}
+
+.menu-toggle.is-open .menu-icon-open {
+    display: none;
+}
+
+.menu-toggle.is-open .menu-icon-close {
+    display: inline;
+}
+
 .main {
     max-width: calc(var(--main-width) + var(--gap) * 2);
     padding: var(--gap);
@@ -138,6 +164,55 @@ iframe {
 
     .first-entry {
         min-height: 260px;
+    }
+
+    .header-nav {
+        align-items: center;
+    }
+
+    .logo {
+        flex: 1 1 auto;
+    }
+
+    .logo .logo-switches {
+        margin-inline-start: auto;
+    }
+
+    .menu-toggle {
+        display: inline-flex;
+    }
+
+    #menu {
+        display: none;
+        width: 100%;
+        order: 3;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        overflow: visible;
+        white-space: normal;
+        margin: 0;
+        padding: .25rem 0 .5rem;
+        line-height: 1.6;
+        border-top: 1px solid var(--border);
+    }
+
+    #menu.open {
+        display: flex;
+    }
+
+    #menu li {
+        width: 100%;
+        padding: .4rem var(--gap);
+    }
+
+    #menu li + li {
+        margin-inline-start: 0;
+    }
+
+    #menu a {
+        display: block;
+        width: 100%;
+        font-size: 17px;
     }
 
     .footer {
