@@ -1,17 +1,17 @@
 ---
-title: "Hello nodeaitry.com"
+title: "Hello NODEAI TRY"
 date: 2026-05-28T22:50:00+08:00
-description: "nodeaitry.com 的第一篇文章。"
+description: "NODEAI TRY 的第一篇文章。"
 tags: ["nodeaitry", "hugo", "papermod"]
 categories: ["site"]
 draft: false
 ShowToc: true
 TocOpen: true
-aiSummary: "这是 nodeaitry.com 的初始化记录：站点使用 Hugo、PaperMod 和 Cloudflare Pages 构建，并接入评论、代码高亮、目录、分享与深色模式等基础能力。"
+aiSummary: "这是 NODEAI TRY 的初始化记录：站点使用 Hugo、PaperMod 和 Cloudflare Pages 构建，并接入评论、代码高亮、目录、分享与深色模式等基础能力。"
 aiSummaryBy: "nodeaitry"
 ---
 
-这是 nodeaitry.com 的第一篇文章。
+这是 NODEAI TRY 的第一篇文章。
 
 ## 写作方式
 
@@ -27,7 +27,7 @@ aiSummaryBy: "nodeaitry"
 
 ```js
 const site = {
-  name: "nodeaitry.com",
+  name: "NODEAI TRY",
   stack: ["Hugo", "PaperMod", "Cloudflare"],
 };
 
