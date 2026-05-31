@@ -20,12 +20,12 @@ pagination:
   disableAliases: false
   pagerSize: 10
 
-defaultContentLanguage: zh
+defaultContentLanguage: en
 defaultContentLanguageInSubdir: false
 languages:
-  zh:
-    label: "简体中文"
-    locale: "zh-CN"
+  en:
+    label: "English"
+    locale: "en-US"
     weight: 1
     taxonomies:
       category: categories
@@ -33,18 +33,27 @@ languages:
       series: series
     menu:
       main:
-        - name: 关于
-          url: about/
+        - name: Home
+          url: /
           weight: 1
-        - name: 归档
+        - name: Archive
           url: archives/
           weight: 2
-        - name: 搜索
-          url: search/
-          weight: 3
-        - name: 标签
+        - name: Tags
           url: tags/
+          weight: 3
+        - name: Flights
+          url: flights/
           weight: 4
+        - name: Soul
+          url: soul/
+          weight: 5
+        - name: Search
+          url: search/
+          weight: 6
+        - name: About
+          url: about/
+          weight: 7
 
 outputFormats:
   llms:
@@ -62,14 +71,15 @@ outputs:
 
 params:
   env: production
-  description: "nodeaitry.com"
+  description: "Record, Share and Archive"
+  keywords: ["Blog", "AI", "Engineering", "Product", "Hugo", "Cloudflare"]
   author: nodeaitry
 
   defaultTheme: auto
   ShowShareButtons: true
-  ShowReadingTime: true
+  ShowReadingTime: false
   ShowPostNavLinks: true
-  ShowBreadCrumbs: true
+  ShowBreadCrumbs: false
   ShowCodeCopyButtons: true
   ShowRssButtonInSectionTermList: true
   ShowAllPagesInArchive: true
@@ -93,13 +103,19 @@ params:
         url: tags
 
   homeInfoParams:
-    Title: "nodeaitry.com"
+    Title: "Hi there 👋"
     Content: |
-      记录 AI、工程实践和产品思考。
+      I'm **nodeaitry**, writing notes about AI, engineering practice and product thinking.
 
-      - 以简洁、快速、可读为优先。
-      - 基于 Hugo PaperMod 主题搭建。
-      - 内容围绕真实问题、可复用方法和长期沉淀。
+      This site is built as a lightweight archive for ideas, experiments and long-term references.
+
+  socialIcons:
+    - name: github
+      title: GitHub
+      url: "https://github.com/CSzcm8788"
+    - name: rss
+      title: RSS
+      url: "/index.xml"
 
   assets:
     disableHLJS: true

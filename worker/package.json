@@ -9,6 +9,6 @@
     "db:migrate:remote": "wrangler d1 execute nodeaitry-comments --remote --file schema/schema.sql"
   },
   "devDependencies": {
-    "wrangler": "^4.18.0"
+    "wrangler": "^4.95.0"
   }
 }

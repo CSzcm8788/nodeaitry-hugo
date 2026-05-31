@@ -18,7 +18,12 @@ It lives in `themes/hugo-PaperMod`, matching the PaperMod example site layout.
 
 ## Local Development
 
-PaperMod currently requires Hugo `v0.146.0+`.
+Use Hugo Extended `v0.162.0` or newer. The Cloudflare Pages production environment should set:
+
+```txt
+HUGO_VERSION=0.162.0
+HUGO_ENV=production
+```
 
 ```sh
 npm run dev
