@@ -1,7 +1,7 @@
 ---
-title: "About"
+title: "关于"
 date: 2026-05-28T22:50:00+08:00
-description: "About nodeaitry.com"
+description: "关于 nodeaitry.com"
 author: ["nodeaitry"]
 draft: false
 hiddenInRss: true
@@ -10,6 +10,6 @@ ShowBreadCrumbs: false
 comments: false
 ---
 
-nodeaitry.com is a personal archive for AI, engineering practice and product thinking.
+nodeaitry.com 是一个记录 AI、工程实践和产品思考的个人归档站。
 
-The site is intentionally simple: Hugo for static publishing, Cloudflare Pages for deployment, R2 for image hosting, and Workers + D1 for comments.
+站点保持轻量：Hugo 负责静态发布，Cloudflare Pages 负责部署，R2 承载图片，Workers + D1 提供评论能力。

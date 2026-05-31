@@ -20,13 +20,53 @@ pagination:
   disableAliases: false
   pagerSize: 10
 
-defaultContentLanguage: en
+defaultContentLanguage: zh
 defaultContentLanguageInSubdir: false
 languages:
+  zh:
+    label: "中文"
+    locale: "zh-CN"
+    weight: 1
+    taxonomies:
+      category: categories
+      tag: tags
+      series: series
+    menu:
+      main:
+        - name: 首页
+          url: /
+          weight: 1
+        - name: 归档
+          url: archives/
+          weight: 2
+        - name: 标签
+          url: tags/
+          weight: 3
+        - name: 飞行
+          url: flights/
+          weight: 4
+        - name: 碎片
+          url: soul/
+          weight: 5
+        - name: 搜索
+          url: search/
+          weight: 6
+        - name: 关于
+          url: about/
+          weight: 7
+    params:
+      description: "记录、分享与归档"
+      languageAltTitle: "English"
+      homeInfoParams:
+        Title: "你好 👋"
+        Content: |
+          我是 **nodeaitry**，在这里记录 AI、工程实践和产品思考。
+
+          这个站点用于长期归档想法、实验和可复用的方法。
   en:
     label: "English"
     locale: "en-US"
-    weight: 1
+    weight: 2
     taxonomies:
       category: categories
       tag: tags
@@ -54,6 +94,15 @@ languages:
         - name: About
           url: about/
           weight: 7
+    params:
+      description: "Record, Share and Archive"
+      languageAltTitle: "中文"
+      homeInfoParams:
+        Title: "Hi there 👋"
+        Content: |
+          I'm **nodeaitry**, writing notes about AI, engineering practice and product thinking.
+
+          This site is built as a lightweight archive for ideas, experiments and long-term references.
 
 outputFormats:
   llms:
@@ -76,6 +125,7 @@ params:
   author: nodeaitry
 
   defaultTheme: auto
+  displayFullLangName: true
   ShowShareButtons: true
   ShowReadingTime: false
   ShowPostNavLinks: true
@@ -103,11 +153,11 @@ params:
         url: tags
 
   homeInfoParams:
-    Title: "Hi there 👋"
+    Title: "你好 👋"
     Content: |
-      I'm **nodeaitry**, writing notes about AI, engineering practice and product thinking.
+      我是 **nodeaitry**，在这里记录 AI、工程实践和产品思考。
 
-      This site is built as a lightweight archive for ideas, experiments and long-term references.
+      这个站点用于长期归档想法、实验和可复用的方法。
 
   socialIcons:
     - name: github

@@ -1,11 +1,10 @@
 ---
-title: "Soul"
-description: "A quiet page for small notes and personal fragments."
+title: "碎片"
+description: "用于放置一些短笔记和个人片段。"
 draft: false
 hiddenInRss: true
 disableShare: true
 comments: false
 ---
 
-Small notes and personal fragments will live here.
-
+这里会放短笔记和个人片段。
