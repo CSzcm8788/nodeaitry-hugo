@@ -18,10 +18,10 @@ It lives in `themes/hugo-PaperMod`, matching the PaperMod example site layout.
 
 ## Local Development
 
-Use Hugo Extended `v0.162.0` or newer. The Cloudflare Pages production environment should set:
+Use Hugo Extended `v0.162.1` or newer. The Cloudflare Pages production environment should set:
 
 ```txt
-HUGO_VERSION=0.162.0
+HUGO_VERSION=0.162.1
 HUGO_ENV=production
 ```
 

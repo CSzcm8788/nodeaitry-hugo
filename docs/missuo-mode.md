@@ -37,7 +37,7 @@ Root directory: /
 Environment variables:
 
 ```txt
-HUGO_VERSION=0.162.0
+HUGO_VERSION=0.162.1
 HUGO_ENV=production
 ```
 
