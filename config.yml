@@ -42,12 +42,6 @@ languages:
         - name: 标签
           url: tags/
           weight: 3
-        - name: 飞行
-          url: flights/
-          weight: 4
-        - name: 碎片
-          url: soul/
-          weight: 5
         - name: 搜索
           url: search/
           weight: 6
@@ -82,6 +76,9 @@ params:
   description: "记录、分享与归档"
   keywords: ["Blog", "AI", "Engineering", "Product", "Hugo", "Cloudflare"]
   author: nodeaitry
+
+  label:
+    text: nodeaitry
 
   defaultTheme: auto
   ShowShareButtons: true
