@@ -296,11 +296,12 @@ html[data-theme="dark"] body.list {
 }
 
 .footer a {
-    border-bottom: 1px solid var(--secondary);
+    border-bottom: 0;
+    text-decoration: none;
 }
 
 .footer a:hover {
-    border-bottom-color: var(--primary);
+    color: var(--primary);
 }
 
 iframe {
