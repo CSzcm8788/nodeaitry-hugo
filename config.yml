@@ -1,6 +1,6 @@
 baseURL: "https://nodeaitry.com/"
-title: nodeaitry.com
-copyright: "© nodeaitry.com"
+title: NODEAI TRY
+copyright: "© NODEAI TRY"
 theme: [hugo-PaperMod]
 
 enableInlineShortcodes: true
@@ -99,9 +99,9 @@ params:
 
   profileMode:
     enabled: false
-    title: nodeaitry.com
+    title: NODEAI TRY
     imageUrl: "#"
-    imageTitle: nodeaitry.com
+    imageTitle: NODEAI TRY
     buttons:
       - name: Archives
         url: archives
