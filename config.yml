@@ -124,6 +124,9 @@ params:
     - name: instagram
       title: Instagram
       url: "https://www.instagram.com/yukabiubiu/"
+    - name: x
+      title: X
+      url: "https://x.com/yukabiubiu"
     - name: rss
       title: RSS
       url: "/index.xml"
