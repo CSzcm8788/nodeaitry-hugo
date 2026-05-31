@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="NODEAI TRY icon">
+  <rect width="512" height="512" rx="112" fill="#111827"/>
+  <rect x="128" y="112" width="72" height="288" rx="30" fill="#f8fafc"/>
+  <rect x="312" y="112" width="72" height="288" rx="30" fill="#f8fafc"/>
+  <path d="M178 112h58l154 288h-60L176 112z" fill="#38bdf8"/>
+</svg>

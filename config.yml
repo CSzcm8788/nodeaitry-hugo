@@ -78,7 +78,7 @@ params:
   author: nodeaitry
 
   label:
-    text: nodeaitry
+    text: NODEAI TRY
 
   defaultTheme: auto
   ShowShareButtons: true
@@ -134,6 +134,13 @@ params:
 
   assets:
     disableHLJS: true
+    favicon: "/favicon.svg"
+    favicon16x16: "/favicon-16x16.png"
+    favicon32x32: "/favicon-32x32.png"
+    apple_touch_icon: "/apple-touch-icon.png"
+    safari_pinned_tab: "/safari-pinned-tab.svg"
+    theme_color: "#111827"
+    msapplication_TileColor: "#111827"
 
   footer:
     text: 'Powered by [Cloudflare Pages](https://pages.cloudflare.com/), [Workers](https://workers.cloudflare.com/), [D1](https://developers.cloudflare.com/d1/) & [R2](https://www.cloudflare.com/products/r2/)'
