@@ -56,53 +56,12 @@ languages:
           weight: 7
     params:
       description: "记录、分享与归档"
-      languageAltTitle: "English"
       homeInfoParams:
         Title: "你好 👋"
         Content: |
           我是 **nodeaitry**，在这里记录 AI、工程实践和产品思考。
 
           这个站点用于长期归档想法、实验和可复用的方法。
-  en:
-    label: "English"
-    locale: "en-US"
-    weight: 2
-    taxonomies:
-      category: categories
-      tag: tags
-      series: series
-    menu:
-      main:
-        - name: Home
-          url: /
-          weight: 1
-        - name: Archive
-          url: archives/
-          weight: 2
-        - name: Tags
-          url: tags/
-          weight: 3
-        - name: Flights
-          url: flights/
-          weight: 4
-        - name: Soul
-          url: soul/
-          weight: 5
-        - name: Search
-          url: search/
-          weight: 6
-        - name: About
-          url: about/
-          weight: 7
-    params:
-      description: "Record, Share and Archive"
-      languageAltTitle: "中文"
-      homeInfoParams:
-        Title: "Hi there 👋"
-        Content: |
-          I'm **nodeaitry**, writing notes about AI, engineering practice and product thinking.
-
-          This site is built as a lightweight archive for ideas, experiments and long-term references.
 
 outputFormats:
   llms:
@@ -120,12 +79,11 @@ outputs:
 
 params:
   env: production
-  description: "Record, Share and Archive"
+  description: "记录、分享与归档"
   keywords: ["Blog", "AI", "Engineering", "Product", "Hugo", "Cloudflare"]
   author: nodeaitry
 
   defaultTheme: auto
-  displayFullLangName: true
   ShowShareButtons: true
   ShowReadingTime: false
   ShowPostNavLinks: true
@@ -163,6 +121,9 @@ params:
     - name: github
       title: GitHub
       url: "https://github.com/CSzcm8788"
+    - name: instagram
+      title: Instagram
+      url: "https://www.instagram.com/yukabiubiu/"
     - name: rss
       title: RSS
       url: "/index.xml"
@@ -178,7 +139,11 @@ markup:
     renderer:
       unsafe: true
   highlight:
+    codeFences: true
+    guessSyntax: true
+    lineNos: false
     noClasses: false
+    tabWidth: 2
 
 services:
   instagram:
