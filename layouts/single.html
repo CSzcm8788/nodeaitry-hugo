@@ -62,8 +62,10 @@
       {{- if (.Param "ShowPostNavLinks") }}
       {{- partial "post_nav_links.html" . }}
       {{- end }}
-      {{- if (and site.Params.ShowShareButtons (ne .Params.disableShare true)) }}
-      {{- partial "share_icons.html" . -}}
+      {{- if (and site.Params.ShowArticleSocialIcons (ne .Params.disableShare true)) }}
+      <div class="article-social-icons">
+        {{- partial "social_icons.html" (dict "align" "center") -}}
+      </div>
       {{- end }}
     </footer>
 

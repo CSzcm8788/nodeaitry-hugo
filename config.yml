@@ -81,7 +81,8 @@ params:
     text: NODEAI TRY
 
   defaultTheme: auto
-  ShowShareButtons: true
+  ShowShareButtons: false
+  ShowArticleSocialIcons: true
   ShowReadingTime: false
   ShowPostNavLinks: true
   ShowBreadCrumbs: false
@@ -90,7 +91,6 @@ params:
   ShowAllPagesInArchive: true
   ShowPageNums: true
   ShowToc: true
-  ShareButtons: ["x", "linkedin", "facebook", "whatsapp", "telegram"]
   comments: true
   commentsApi: "https://comments.nodeaitry.com"
   commentsApiLocal: "http://localhost:8787"

@@ -235,6 +235,25 @@ html[data-theme="dark"] body.list {
     border-radius: 6px;
 }
 
+.article-social-icons {
+    margin-top: 18px;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--code-bg);
+    text-align: center;
+}
+
+.article-social-icons .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.article-social-icons .social-icons a {
+    border-radius: 6px;
+}
+
 .first-entry {
     min-height: 320px;
     margin: var(--gap) 0 calc(var(--gap) * 2);
