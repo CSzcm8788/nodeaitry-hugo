@@ -97,7 +97,7 @@ async function createComment(request, env) {
   const avatarUrl = emailHash ? `https://www.gravatar.com/avatar/${emailHash}?s=160&d=mp&r=g` : "https://www.gravatar.com/avatar/?s=160&d=mp&r=g";
   const ip = request.headers.get("cf-connecting-ip") || "";
   const userAgent = request.headers.get("user-agent") || "";
-  const meta = await ipMetadata(ip);
+  const meta = await ipMetadata(request, ip);
   const ua = parseUserAgent(userAgent);
 
   const inserted = await env.DB.prepare(
@@ -324,23 +324,48 @@ async function telegramApi(env, method, payload) {
   }
 }
 
-async function ipMetadata(ip) {
-  if (!ip) return {};
+async function ipMetadata(request, ip) {
+  const cf = request.cf || {};
+  const countryCode = String(cf.country || "").trim().toUpperCase();
+  const native = {
+    country: countryName(countryCode),
+    countryCode,
+    asn: normalizeAsn(cf.asn),
+    asOrg: String(cf.asOrganization || "").trim()
+  };
+
+  if (!ip || Object.values(native).every(Boolean)) return native;
+
   try {
     const response = await fetch(`https://api.ipinfo.es/ipinfo?ip=${encodeURIComponent(ip)}`, {
       headers: { "accept": "application/json" }
     });
-    if (!response.ok) return {};
+    if (!response.ok) return native;
     const data = await response.json();
     return {
-      country: data.country_name || data.country || data.countryName || "",
-      countryCode: data.country_code || data.countryCode || "",
-      asn: data.asn || data.as || "",
-      asOrg: data.org || data.as_name || data.asn_org || data.isp || ""
+      country: native.country || data.country_name || data.country || data.countryName || "",
+      countryCode: native.countryCode || String(data.country_code || data.countryCode || "").toUpperCase(),
+      asn: native.asn || normalizeAsn(data.asn || data.as),
+      asOrg: native.asOrg || data.org || data.as_name || data.asn_org || data.isp || ""
     };
   } catch {
-    return {};
+    return native;
   }
+}
+
+function countryName(countryCode) {
+  if (!countryCode) return "";
+  try {
+    return new Intl.DisplayNames(["en"], { type: "region" }).of(countryCode) || countryCode;
+  } catch {
+    return countryCode;
+  }
+}
+
+function normalizeAsn(value) {
+  const asn = String(value || "").trim();
+  if (!asn) return "";
+  return /^AS/i.test(asn) ? `AS${asn.slice(2)}` : `AS${asn}`;
 }
 
 function publicComment(row) {
