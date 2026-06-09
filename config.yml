@@ -51,11 +51,17 @@ languages:
     params:
       description: "记录、分享与归档"
       homeInfoParams:
-        Title: "你好 👋"
+        Title: "你好 / Hello 👋"
         Content: |
-          我是 **nodeaitry**，在这里记录 AI、工程实践和产品思考。
+          你好，我是 **Yukabiubiu**。在这里记录 AI、工程实践和产品思考，偶尔也会记录生活。
 
-          这个站点用于长期归档想法、实验和可复用的方法。
+          这个站点用于长期归档想法、实验和可复用的方法。欢迎与我交流。
+
+          ---
+
+          Hi, I'm **Yukabiubiu**. I write about AI, engineering practices, and product thinking, with occasional notes on everyday life.
+
+          This site is a long-term archive for ideas, experiments, and reusable approaches. Feel free to reach out and connect.
 
 outputFormats:
   llms:
@@ -109,11 +115,17 @@ params:
         url: tags
 
   homeInfoParams:
-    Title: "你好 👋"
+    Title: "你好 / Hello 👋"
     Content: |
-      我是 **nodeaitry**，在这里记录 AI、工程实践和产品思考。
+      你好，我是 **Yukabiubiu**。在这里记录 AI、工程实践和产品思考，偶尔也会记录生活。
 
-      这个站点用于长期归档想法、实验和可复用的方法。
+      这个站点用于长期归档想法、实验和可复用的方法。欢迎与我交流。
+
+      ---
+
+      Hi, I'm **Yukabiubiu**. I write about AI, engineering practices, and product thinking, with occasional notes on everyday life.
+
+      This site is a long-term archive for ideas, experiments, and reusable approaches. Feel free to reach out and connect.
 
   socialIcons:
     - name: github
