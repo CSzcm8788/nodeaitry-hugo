@@ -3,7 +3,8 @@ main = "src/index.js"
 compatibility_date = "2026-05-28"
 workers_dev = true
 routes = [
-  { pattern = "comments.nodeaitry.com/*", zone_id = "4ac94a0ec8d78fa24147a8ed76c695c9" }
+  { pattern = "comments.nodeaitry.com/*", zone_id = "4ac94a0ec8d78fa24147a8ed76c695c9" },
+  { pattern = "www.nodeaitry.com/*", zone_id = "4ac94a0ec8d78fa24147a8ed76c695c9" }
 ]
 
 [vars]
@@ -11,7 +12,7 @@ SITE_URL = "https://nodeaitry.com"
 PUBLIC_BASE_URL = "https://comments.nodeaitry.com"
 ALLOWED_ORIGINS = "https://nodeaitry.com,http://127.0.0.1:1313,http://localhost:1313"
 AUTO_APPROVE = "false"
-ADMIN_NAME = "nodeaitry"
+ADMIN_NAME = "NODEAI TRY"
 ADMIN_EMAILS = "muziwen.logo@gmail.com"
 
 [[d1_databases]]

@@ -7,6 +7,11 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
+    if (url.hostname === "www.nodeaitry.com") {
+      url.hostname = "nodeaitry.com";
+      return Response.redirect(url.toString(), 301);
+    }
+
     if (request.method === "OPTIONS") {
       return new Response(null, { headers: corsHeaders(request, env) });
     }
@@ -200,9 +205,29 @@ async function telegramWebhook(request, env, url) {
 async function handleTelegramCallback(env, callback) {
   if (!isTelegramAdmin(env, callback.from?.id)) return;
   const [action, rawId] = String(callback.data || "").split(":");
-  const status = normalizeAction(action);
   const id = Number(rawId);
-  if (!status || !id) return;
+  if (!id) return;
+
+  if (action === "reply") {
+    await telegramApi(env, "sendMessage", {
+      chat_id: callback.message?.chat?.id || env.TELEGRAM_CHAT_ID,
+      text: `Reply to comment #${id}`,
+      reply_to_message_id: callback.message?.message_id,
+      reply_markup: {
+        force_reply: true,
+        selective: true,
+        input_field_placeholder: "Write the admin reply..."
+      }
+    });
+    await telegramApi(env, "answerCallbackQuery", {
+      callback_query_id: callback.id,
+      text: `Replying to comment ${id}`
+    });
+    return;
+  }
+
+  const status = normalizeAction(action);
+  if (!status) return;
   await setCommentStatus(env, id, status);
   await telegramApi(env, "answerCallbackQuery", {
     callback_query_id: callback.id,
@@ -215,12 +240,26 @@ async function handleTelegramMessage(env, message) {
   const text = normalizeText(message.text || message.caption || "", 4000);
   if (!text || !message.reply_to_message?.message_id) return;
 
-  const parent = await env.DB.prepare(
+  let parent = await env.DB.prepare(
     `SELECT c.*, p.page_key, p.page_url, p.page_title
        FROM comments c
        JOIN pages p ON p.id = c.page_id
       WHERE c.telegram_message_id = ?`
   ).bind(Number(message.reply_to_message.message_id)).first();
+
+  if (!parent) {
+    const prompt = String(message.reply_to_message.text || message.reply_to_message.caption || "");
+    const commentId = Number(prompt.match(/Reply to comment #(\d+)/i)?.[1] || 0);
+    if (commentId) {
+      parent = await env.DB.prepare(
+        `SELECT c.*, p.page_key, p.page_url, p.page_title
+           FROM comments c
+           JOIN pages p ON p.id = c.page_id
+          WHERE c.id = ?`
+      ).bind(commentId).first();
+    }
+  }
+
   if (!parent) return;
 
   const now = timestamp();
@@ -232,8 +271,8 @@ async function handleTelegramMessage(env, message) {
   const inserted = await env.DB.prepare(
     `INSERT INTO comments (
        page_id, parent_id, root_id, depth, author_name, author_email_hash, content, status,
-       is_admin, source, avatar_url, created_at, updated_at
-     ) VALUES (?, ?, ?, ?, ?, ?, ?, 'approved', 1, 'telegram', ?, ?, ?)`
+       is_admin, source, avatar_url, telegram_message_id, created_at, updated_at
+     ) VALUES (?, ?, ?, ?, ?, ?, ?, 'approved', 1, 'telegram', ?, ?, ?, ?)`
   ).bind(
     parent.page_id,
     parent.id,
@@ -243,13 +282,18 @@ async function handleTelegramMessage(env, message) {
     emailHash,
     text,
     avatarUrl,
+    Number(message.message_id),
     now,
     now
   ).run();
 
+  if (parent.status !== "approved") {
+    await setCommentStatus(env, parent.id, "approve");
+  }
+
   await telegramApi(env, "sendMessage", {
     chat_id: env.TELEGRAM_CHAT_ID,
-    text: `Admin reply posted: #${inserted.meta?.last_row_id || ""}`,
+    text: `Admin reply posted: #${inserted.meta?.last_row_id || ""}\n${parent.page_url}`,
     reply_to_message_id: message.message_id
   });
 }
@@ -281,8 +325,14 @@ async function getParentComment(env, pageId, parentId) {
 async function notifyTelegram(env, comment) {
   if (!env.TELEGRAM_BOT_TOKEN || !env.TELEGRAM_CHAT_ID || !comment.id) return;
   const keyboard = comment.status === "pending"
-    ? [[button("Approve", `approve:${comment.id}`), button("Spam", `spam:${comment.id}`), button("Delete", `delete:${comment.id}`)]]
-    : [[button("Spam", `spam:${comment.id}`), button("Delete", `delete:${comment.id}`)]];
+    ? [
+        [button("Reply", `reply:${comment.id}`), button("Approve", `approve:${comment.id}`)],
+        [button("Spam", `spam:${comment.id}`), button("Delete", `delete:${comment.id}`)]
+      ]
+    : [
+        [button("Reply", `reply:${comment.id}`)],
+        [button("Spam", `spam:${comment.id}`), button("Delete", `delete:${comment.id}`)]
+      ];
   const text = [
     `New ${comment.status} comment #${comment.id}`,
     `Page: ${comment.page.page_title}`,
@@ -290,7 +340,9 @@ async function notifyTelegram(env, comment) {
     `Author: ${comment.authorName}${comment.authorEmail ? ` <${comment.authorEmail}>` : ""}`,
     comment.parentId ? `Reply to: #${comment.parentId}` : "",
     "",
-    comment.content
+    comment.content,
+    "",
+    "Use Reply below, or reply directly to this Telegram message."
   ].filter(Boolean).join("\n");
 
   const result = await telegramApi(env, "sendMessage", {
